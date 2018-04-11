@@ -1,0 +1,27 @@
+p>
+<form [formGroup]="signInForm" (ngSubmit)="singIn()">
+  <div class="inp">
+      <input  type="email"  name="signInEmail" id="signInEmail"  placeholder="Email" [formControl]="signInEmail">
+      <p *ngIf="signInEmail.hasError('email') && !signInEmail.hasError('required')">
+        Please enter a valid email address
+      </p>
+      <p *ngIf="signInEmail.hasError('required')">
+        Email is <strong>required</strong>
+      </p>
+    </div>
+      <div class="inp" >
+    <div class="example-full-width">
+      <input type="password" name="signInPassword" id="signInPassword" [formControl]="signInPassword"  placeholder="Enter your password" [type]="hide ? 'password' : 'text'">
+
+      <p [hidden]="signInPassword.hasError('required')">
+        The password is required.
+      </p>
+      <p [hidden]="!signInPassword.hasError('minlength')">
+        The password must be at least 8 chracter is required.
+      </p>
+    </div>
+  </div>
+  <div class="inp">
+    <button class="example-full-width" type="submit" [disabled]="!signInForm.valid">Sign In</button>
+  </div>
+</form>
